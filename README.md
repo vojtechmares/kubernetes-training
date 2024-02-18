@@ -56,6 +56,8 @@ Set-Alias -Name k -Value kubectl
 
 ## Cluster components
 
+![Kubernetes components](/assets/components-of-kubernetes.svg)
+
 ### Control plane
 
 Formerly master.
