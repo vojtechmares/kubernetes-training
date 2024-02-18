@@ -17,3 +17,5 @@ resource "digital_ocean_kubernetes_cluster" "demo" {
 # TODO: Add Helm release for external-dns
 # TODO: Add Helm release for prometheus-operator
 # TODO: Add Helm release for kube-prometheus-stack
+
+# TODO: Add cloudflare_api_token and create token on fly for external-dns
