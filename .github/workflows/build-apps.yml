@@ -44,7 +44,7 @@ jobs:
       - name: build and push
         uses: docker/build-push-action@v5
         with:
-          context: /apps/hello-world
+          context: apps/hello-world
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.hello_world_meta.outputs.tags }}
@@ -86,7 +86,7 @@ jobs:
       - name: build and push
         uses: docker/build-push-action@v5
         with:
-          context: /apps/probes
+          context: apps/probes
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.probe_meta.outputs.tags }}
@@ -139,7 +139,7 @@ jobs:
       - name: build and push (blue)
         uses: docker/build-push-action@v5
         with:
-          context: /apps/blue-green
+          context: apps/blue-green
           platforms: linux/amd64,linux/arm64
           build-args: |
             IS_BLUE=true
@@ -150,7 +150,7 @@ jobs:
       - name: build and push (green)
         uses: docker/build-push-action@v5
         with:
-          context: /apps/blue-green
+          context: apps/blue-green
           platforms: linux/amd64,linux/arm64
           build-args: |
             IS_BLUE=false
