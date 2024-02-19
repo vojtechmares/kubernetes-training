@@ -8,7 +8,7 @@ RUN go mod download
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o hello-world .
 
-FROM debian:bookwork-slim as runtime
+FROM debian:bookworm-slim as runtime
 
 WORKDIR /app
 
