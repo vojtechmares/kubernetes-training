@@ -9,7 +9,7 @@
 
 # About course
 
-- Slides: https://training.vojtechmares.com/kubernetes/slides/
+- [Slides](https://training.vojtechmares.com/kubernetes/slides/)
 
 # About lector
 
@@ -247,7 +247,7 @@ Deploying our application to _Pod_ might be easy, but not a good idea. To deploy
 
 Kubernetes native:
 
-- Recreate (deetes all pods and creates new ones)
+- Recreate (deletes all pods and creates new ones)
 - RollingUpdate (zero downtime)
 
 Extended:
@@ -462,7 +462,6 @@ Static manifests, Helm charts, and Kustomize are stored in Git repository and ar
 - [Flannel](https://github.com/flannel-io/flannel)
 - [Calico](https://www.projectcalico.org/)
 - [Cilium](https://cilium.io/)
-- [Weave Net](https://www.weave.works/)
 
 ## Pod Security Admission
 
@@ -480,7 +479,7 @@ All Kubernetes components are exposing metrics in Prometheus format.
 
 ## Logging
 
-### Eleastic Cloud on Kubernetes (ECK)
+### Elastic Cloud on Kubernetes (ECK)
 
 ### Grafana Loki
 
@@ -511,7 +510,7 @@ If you want to create your own operator, you can use [Operator SDK](https://gith
 - [Kubernetes documentation](https://kubernetes.io/docs/home/)
 - [Gateway API](https://gateway-api.sigs.k8s.io/)
 - [ArtifactHub (helm charts)](https://artifacthub.io/)
-- [OperatorHub  (operators)](https://operatorhub.io/)
+- [OperatorHub](https://operatorhub.io/)
 
 ## Questions?
 
