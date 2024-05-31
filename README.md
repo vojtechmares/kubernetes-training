@@ -636,6 +636,6 @@ Integrated with *RedHat OpenShift*, making it easy installing operators from Ope
 - Email me at [iam@vojtechmares.com](mailto:iam@vojtechmares.com)
 - Website: [vojtechmares.com](https://www.vojtechmares.com)
 - My other trainings: [vojtechmares.com/#skoleni](https://www.vojtechmares.com/#skoleni)
-- Twitter/X: [@vojtechmares](https://twitter.com/vojtechmares)
+- X: [@vojtechmares](https://x.com/vojtechmares)
 - GitHub: [github.com/vojtechmares](https://github.com/vojtechmares)
 - LinkedIn: [linkedin.com/in/vojtech-mares](https://www.linkedin.com/in/vojtech-mares)
