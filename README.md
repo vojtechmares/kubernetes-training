@@ -412,25 +412,50 @@ Is the program running? If not, restart the *Pod*.
 
 Is the program ready to accept traffic? If not, do not send traffic to the *Pod*.
 
-## Horizontal auto scaling
+## Pod auto scaling
 
-- Horizontal Pod Autoscaler
+One of great Kubernetes strengths is Kubernetes capability of scaling workload up and down.
 
-## Vertical auto scaling
+### Horizontal Pod Autoscaler
+
+Changing the number of *Pods* running to handle the incoming requests efficiently.
+
+### Vertical auto scaling
+
+Unlike *HPA*, *VerticalPodAutoscaler* does not come with Kubernetes by default, but it's a separate project [on GitHub](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler) that you need to install yourself.
+
+Changing the requested amount resources on *Pods*.
+
+> [!NOTE]
+> This will invoke a *Pod* restart to apply the new configuration.
 
 ## Cluster auto scaling
 
-Dynamically add or remove nodes from the cluster based on resource consumption.
+Second available option, which goes hand-in-hand with automatically scaling *Pods*, to efficiently utilize the cluster. So we do not need to provision number of *Nodes* to cover maximum number of *Pods* during peak times.
 
 ### Cluster Autoscaler
 
+Dynamically add or remove nodes from the cluster based on resource consumption. Aka how many nodes do we need to efficiently schedule all *Pods*.
+
 ### Karpenter
 
-Only on AWS.
+A cluster autoscaler made by AWS, to achieve higher efficiency and reduce the time from determining that the cluster needs more nodes to actually nodes becoming ready within the cluster.
 
 ## Pod Disruption Budget
 
+When we are running multiple *Pods* across multiple *Nodes*, we want to determine some minimum required amount of *Pods*, that make service still available without failing.
+
+For example, when we are scaling down the cluster and *Pods* are being reshuffled across nodes, not all *Pods* may be available. *Pod Disruption Budget* says how many *Pods* can be not ready, but our service is still functioning, perhaps with increased latency.
+
 ### Pod evictions
+
+- Preemption evictions
+  - Scheduling a *Pod* with higher *Priority Class*
+- Node pressure evictions
+  - Node drain
+  - Scheduling a *Pod* with higher *Quality of Service*
+  - API initiated (for example: deleting *Pod* via kubectl)
+  - Taint-based
 
 ## Helm
 
