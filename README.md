@@ -262,7 +262,7 @@ See: [Argo Rollouts](https://argoproj.github.io/rollouts/) or [Flagger](https://
 
 ## Ingress
 
-_Ingress_ resource exposes our application network interface (HTTP, TCP,...) to public internet.
+*Ingress* resource exposes our application network interface (HTTP, TCP,...) to public internet.
 
 ### Ingress controller
 
@@ -281,7 +281,7 @@ Implementations:
 
 ## StatefulSet
 
-A special abstraction for running _Pods_ running stateful applications like databases (for example MySQL or Redis) or message brokers like RabbitMQ and Apache Kafka.
+A special abstraction for running *Pods* running stateful applications like databases (for example MySQL or Redis) or message brokers like RabbitMQ and Apache Kafka.
 
 ### Headless service
 
@@ -358,15 +358,15 @@ kubectl top nodes
 
 ### Startup probe
 
-Wait for _Pod_ to start, useful when application start takes time, for example Java applications or machine learning models.
+Wait for *Pod* to start, useful when application start takes time, for example Java applications or machine learning models.
 
 ### Liveness probe
 
-Is the program running? If not, restart the _Pod_.
+Is the program running? If not, restart the *Pod*.
 
 ### Readiness probe
 
-Is the program ready to accept traffic? If not, do not send traffic to the _Pod_.
+Is the program ready to accept traffic? If not, do not send traffic to the *Pod*.
 
 ## Horizontal auto scaling
 
