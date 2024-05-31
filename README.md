@@ -466,6 +466,8 @@ Helm is a package manager for Kubernetes.
 
 ### Helm chart
 
+A package of all manifest for an application. Containing everything, that you need to run the application. Chart can also determine a minimal Kubernetes version it supports, that is especially important when supporting multiple Kubernetes versions and you make breaking changes in the Chart.
+
 ### Helm repository
 
 Supports public and private repositories.
@@ -483,12 +485,15 @@ helm install my-release ./my-chart
 helm upgrade my-release ./my-chart
 
 # install and upgrade
-helm install --upgrade my-release ./my-chart
+helm upgrade --install my-release ./my-chart
 
 # install from repository
 helm repo add stable https://charts.helm.sh/stable
 helm repo update
 helm install my-release stable/mysql
+
+# install from oci repository
+helm install my-release oci://registry.example.com/some/chart
 
 # uninstall
 helm uninstall my-release
