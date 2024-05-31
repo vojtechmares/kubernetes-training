@@ -284,21 +284,23 @@ Implementations:
 
 A special abstraction for running *Pods* running stateful applications like databases (for example MySQL or Redis) or message brokers like RabbitMQ and Apache Kafka.
 
+StatefulSet also needs a "headless service", which is defined in it's spec.
+
 ### Headless service
+
+A service with `type=ClusterIP` and `clusterIP=None` configuration.
+
+That creates a service without a Virtual IP for load balancing and instead DNS will return all IPs of *Pods*.
+
+That is important for many reasons. This allows you to distinguish between running *Pods* (in another words preserving network identity of a process). Or to do client-side load balancing.
+
+Why would we want to know to which *Pod* are we talking to? For example with databases, we want to connect to primary instance for writes, but reads are fine from replicas.
+
+And as for the case of client side load balancing. This eliminates the need of a dedicated load balancer such as HA Proxy. Making it cheaper to operate and allows clients more granular control over to which backends it connects to. For example in microservices, you want your clients to connect to multiple backends, but each client should connect to a subset of all backends available to increase resiliency.
 
 ## Job
 
-## CronJob
-
-## Persistent storage: Volumes
-
-### PersistentVolume and PersistentVolumeClaim
-
-### Access modes
-
-### Storage classes
-
-### Reclaim policy
+### CronJob
 
 ## Configuration and secrets
 
@@ -309,6 +311,46 @@ A special abstraction for running *Pods* running stateful applications like data
 ### Load environment variables from ConfigMap or Secret
 
 ### Mount ConfigMap or Secret as volume
+
+## Persistent data storage
+
+### PersistentVolume and PersistentVolumeClaim
+
+*PersistentVolume* is a Kubernetes resource representing an actual volume.
+
+*PersistentVolumeClaim* is a Kubernetes resource, marking a *PersistentVolume* claimed for given workload (*Pod*). Not allowing anyone else claim the volume.
+
+### Access modes
+
+- `ReadWriteOnce` (RWO)
+- `ReadWriteMany` (RWX)
+- `ReadOnlyMany` (ROX)
+- `ReadWriteOncePod` (RWOO)
+
+### Storage classes
+
+Storage class represents a storage backend, connected to Kubernetes with a *CSI Driver*.
+
+### Reclaim policy
+
+### Temporary storage
+
+Not persisted between *Pod* deletions, but persisted between *Pod* restarts.
+
+Volume with type `emptyDir`.
+
+### Local storage
+
+- `local-storage` storage class
+- `hostPath`
+
+### CSI plugins
+
+Kubernetes on it's own only implements APIs to support container storage, the implementation itself is left for vendors.
+
+This brings the Container Storage Interface API. Allowing cluster administrators to install only what you need for your workload, if you need any.
+
+The implementation is called a *Driver*, which is responsible for dynamically provisioning volumes, mounting them to nodes and setting up file system. Driver is typically
 
 ## Kubeconfig
 
