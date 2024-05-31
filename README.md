@@ -521,11 +521,11 @@ Installs Helm release from Kubernetes Custom Resource.
 - [Website](https://kustomize.io/)
 - [Docs](https://kubectl.docs.kubernetes.io/)
 
-Kustomize is using overlays and hierachy-based merging of manifests unlike Helm, which is creating packages.
+*Kustomize* is using overlays and hierarchy-based merging of manifests unlike Helm, which is creating packages.
 
 ## GitOps
 
-Static manifests, Helm charts, and Kustomize are stored in Git repository and are applied to the cluster from there on pull-based model. Usually a pro-active solution is hosted in the cluster.
+Static manifests, Helm charts, and *Kustomize* are stored in Git repository and are applied to the cluster from there on pull-based model. Usually a pro-active solution is hosted in the cluster.
 
 - [ArgoCD](https://argoproj.github.io/argo-cd/)
 - [Flux](https://fluxcd.io/)
