@@ -35,7 +35,7 @@ For simplicity and our sanity, let's create an alias for `kubectl`.
 
 #### Shell (bash, zsh,...)
 
-```bash
+```shell
 # .bashrc / .zshrc / etc.
 alias k="kubectl"
 ```
@@ -82,7 +82,7 @@ Machine running our workload (applications).
 
 ## Explain Kubernetes resources
 
-```bash
+```shell
 kubectl explain node
 kubectl explain node.spec
 
@@ -93,7 +93,7 @@ kubectl explain pod.spec.containers.image
 
 ## Nodes
 
-```bash
+```shell
 kubectl get nodes
 
 # or short form
@@ -108,7 +108,7 @@ A command line tool to interact with the cluster.
 
 List resources of type.
 
-```bash
+```shell
 kubectl get namespace
 ```
 
@@ -116,7 +116,7 @@ kubectl get namespace
 
 Describes resource including status, recent events and other information about it.
 
-```bash
+```shell
 kubectl describe namespace default
 ```
 
@@ -124,7 +124,7 @@ kubectl describe namespace default
 
 Creates new resource either in terminal or from file.
 
-```bash
+```shell
 kubectl create namespace example-ns
 
 # or from file
@@ -133,7 +133,7 @@ kubectl create -f ./example-ns.yaml
 
 ### kubectl delete
 
-```bash
+```shell
 kubectl delete namespace example-ns
 
 # or target resource from file
@@ -144,7 +144,7 @@ kubectl delete -f ./example-ns.yaml
 
 Creates a resource if it does not exist or applies the configuration from file to an existing resource.
 
-```bash
+```shell
 kubectl apply -f ./example-ns.yaml
 
 # supports URL
@@ -157,31 +157,31 @@ Smallest deployable unit in Kubernetes. Can be made from multiple containers, us
 
 ### List pods
 
-```bash
+```shell
 kubectl get pods
 ```
 
 ### Describe pod
 
-```bash
+```shell
 kubectl describe pod $POD_NAME
 ```
 
 ### Connect to pod
 
-```bash
+```shell
 kubectl port-forward pod/$POD_NAME $LOCAL_PORT:$POD_PORT
 ```
 
 ### Open bash in pod
 
-```bash
+```shell
 kubectl exec -it $POD_NAME -- bash
 ```
 
 ### Copy files from / to pod
 
-```bash
+```shell
 # From local to pod
 kubectl cp ./path/to/file $POD_NAME:/remote/path
 
@@ -191,7 +191,7 @@ kubectl cp $POD_NAME:/remote/path ./local/path
 
 ### See pod logs
 
-```bash
+```shell
 kubectl logs -f $POD_NAME
 ```
 
@@ -201,31 +201,31 @@ Service is a cluster abstraction a single in-cluster endpoint (DNS name and IP a
 
 ### Create service
 
-```bash
+```shell
 kubectl create -f ./examples/02-service/service.yaml
 ```
 
 ### List services
 
-```bash
+```shell
 kubectl get service
 ```
 
 ### Describe service
 
-```bash
+```shell
 kubectl describe service example-svc
 ```
 
 ### Connect to service
 
-```bash
+```shell
 kubectl port-forward service/example-svc 8080:8080
 ```
 
 ### Delete service
 
-```bash
+```shell
 kubectl delete service example-svc
 ```
 
@@ -319,7 +319,7 @@ A special abstraction for running _Pods_ running stateful applications like data
 
 Easily switch between clusters.
 
-```bash
+```shell
 kubectx demo
 ```
 
@@ -327,7 +327,7 @@ kubectx demo
 
 Easily switch between namespaces.
 
-```bash
+```shell
 kubens kube-system
 ```
 
@@ -337,7 +337,7 @@ RBAC = Role Based Access Control
 
 ### Impersonate ServiceAccont
 
-```bash
+```shell
 kuebctl auth can-i
 ```
 
@@ -346,7 +346,7 @@ kuebctl auth can-i
 > [!NOTE]
 > Requires metrics server to be installed in the cluster.
 
-```bash
+```shell
 kubectl top pods
 
 # or
@@ -407,7 +407,7 @@ Can be hosted on GitHub, GitLab, AWS S3, Google Cloud Storage, Azure Blob Storag
 
 Installs Helm chart to the cluster, creating Helm "release".
 
-```bash
+```shell
 helm install my-release ./my-chart
 
 # upgrade
@@ -427,8 +427,7 @@ helm uninstall my-release
 
 ### Helm rollback
 
-
-```bash
+```shell
 helm rollback my-release 1
 ```
 
