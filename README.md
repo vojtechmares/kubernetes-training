@@ -591,19 +591,34 @@ Cloud integrataions like AWS CloudWatch, Azure Monitor, Google Cloud Operations 
 - Splunk
 - DataDog
 
-## Operators
+## Extending Kubernetes
+
+### Operators
 
 Operators are extensions to Kubernetes that make use of custom resources to manage applications and their components.
 
 For example, RedHat OpenShift (Kubernetes distribution by RedHat) is heavily utilizing operators.
 
+### Kubebuilder
+
+Kubernetes SDK for building *Operators* and *Controllers*.
+
+- [The Kubebuilder Book](https://book.kubebuilder.io/)
+- [GitHub repository](https://github.com/kubernetes-sigs/kubebuilder)
+
+### Operator Framework
+
+If you want to use *Operator Lifecycle Manager* or integrate more with Kubernetes distribution like *RedHat OpenShift*, use *Operator Framework*.
+
+*Operator Framework* is built on top of *Kubebuilder*, so you do not need to learn new APIs, it just brings some more functionality and integration with *OLM*.
+
+The Operator Framework projects offers [Operator SDK](https://github.com/operator-framework/operator-sdk).
+
 ### Operator Lifecycle Manager (OLM)
 
 Operator to manage operators.
 
-### Operator Framework
-
-If you want to create your own operator, you can use [Operator SDK](https://github.com/operator-framework/operator-sdk).
+Integrated with *RedHat OpenShift*, making it easy installing operators from OpenShift Admin Console.
 
 ## Links
 
