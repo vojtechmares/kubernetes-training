@@ -505,9 +505,13 @@ helm uninstall my-release
 helm rollback my-release 1
 ```
 
-## Helm controller
+### Helm controller
 
-On k3s or rke2 by default. Installs Helm release from Kubernetes Custom Resource.
+Helm controller is an external addon not installed by Helm, you need to install it yourself.
+
+Or on Kubernetes distributions like k3s or RKE2, Helm controller is available by default.
+
+Installs Helm release from Kubernetes Custom Resource.
 
 - `HelmRelease`
 - `HelmReleaseConfig`
