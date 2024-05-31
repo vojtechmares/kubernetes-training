@@ -585,7 +585,7 @@ All Kubernetes components are exposing metrics in Prometheus format.
 
 ### Other
 
-Cloud integrataions like AWS CloudWatch, Azure Monitor, Google Cloud Operations Suite.
+Cloud integrations like AWS CloudWatch, Azure Monitor, Google Cloud Operations Suite.
 
 - Fluentd
 - Splunk
