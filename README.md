@@ -273,10 +273,11 @@ Kubernetes does not bring in an Ingress Controller by default and it is up to cl
 
 [Gateway API](https://gateway-api.sigs.k8s.io/) - a new standard for ingress traffic handling. Kubernetes extension made by SIG-Network. Only specification, implementation is up to users.
 
-Implementations:
+Generally Available implementations:
 
 - [Contour](https://projectcontour.io/guides/gateway-api/)
--  [Cilium](https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/)
+- [Cilium](https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/)
+- [Envoy Gateway](https://github.com/envoyproxy/gateway)
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api)
 - [NGINX Gateway Fabric](https://github.com/nginxinc/nginx-gateway-fabric)
 
