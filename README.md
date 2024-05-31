@@ -335,10 +335,10 @@ kubens kube-system
 
 RBAC = Role Based Access Control
 
-### Impersonate ServiceAccont
+### Impersonate ServiceAccount
 
 ```shell
-kuebctl auth can-i
+kubectl auth can-i
 ```
 
 ## Resource consumption
@@ -351,7 +351,7 @@ kubectl top pods
 
 # or
 
-kuebctl top nodes
+kubectl top nodes
 ```
 
 ## Startup, liveness, and readiness probes
