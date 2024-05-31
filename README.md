@@ -532,13 +532,36 @@ Static manifests, Helm charts, and *Kustomize* are stored in Git repository and 
 
 ## Kubernetes networking
 
+Kubernetes by default runs two networks backed by CNI plugin and kube-proxy on each node.
+
+It is useful to know your CIDRs, when debugging issues, so you can spot where the network traffic is heading and if it's a correct location.
+
+- Service network default CIDR: `10.43.0.0/16`
+- Pod network default CIDR: `10.42.0.0/16`
+
+CIDRs may vary depending on your Kubernetes distribution or cluster configuration.
+
 ### Network Policy
+
+*NetworkPolicy* is a Kubernetes resource describing L4 (TCP/UDP) policies of what kind of workload can talk to what.
+
+Including in-cluster resources (other workload, DNS,...), ingress, and egress policies.
+
+For example highly sensitive workload may not be allowed to connect to anything outside of the cluster, to prevent leaking of sensitive information in case of an attack.
+
+### Cilium Network Policy
+
+If you are using [Cilium](https://cilium.io/) as your CNI plugin, you can use the *CiliumNetworkPolicy*, which allows for more fine-grained control over the network traffic. Thanks to introducing L7 (HTTP) policies.
 
 ### CNI plugins
 
 - [Flannel](https://github.com/flannel-io/flannel)
 - [Calico](https://www.projectcalico.org/)
 - [Cilium](https://cilium.io/)
+- [AWS VPC CNI](https://github.com/aws/amazon-vpc-cni-k8s)
+
+> [!NOTE]
+> AWS VPC CNI is CNI plugin that allows your nodes to use AWS Elastic Network Interface on your EC2 instances for Kubernetes networking. Using this is recommended to utilized existing systems and not creating another networking layer on top of it.
 
 ## Pod Security Admission
 
