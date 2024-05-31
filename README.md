@@ -233,15 +233,16 @@ kubectl delete service example-svc
 
 ### Service `type=LoadBalancer`
 
-## ReplicaSet
+## Deployment
 
-_ReplicasSet_ is a child resource to _Deployment_, which is used to keep track of revisions of pools of pods and allows to rollback to it if new revision of _Deployment_ is failing.
+Deploying our application to *Pod* might be easy, but not a good idea. To deploy our app to Kubernetes and run it, we use *Deployment*. It is a layer of abstraction on top of *Pods* (and *ReplicaSet*).
+
+### ReplicaSet
+
+*ReplicasSet* is a child resource to *Deployment*, which is used to keep track of revisions of pools of pods and allows to rollback to it if new revision of *Deployment* is failing.
 
 Today, ReplicaSet is usually not interacted with by users.
 
-## Deployment
-
-Deploying our application to _Pod_ might be easy, but not a good idea. To deploy our app to Kubernetes and run it, we use _Deployment_. It is a layer of abstraction on top of _Pods_ (and _ReplicaSet_).
 
 ### Updates
 
