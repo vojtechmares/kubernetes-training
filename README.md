@@ -567,7 +567,7 @@ If you are using [Cilium](https://cilium.io/) as your CNI plugin, you can use th
 
 ### Pod Security Policy
 
-- Removed in Kubernetes 1.25 (23 August, 2022)
+- Removed in Kubernetes 1.25 (released: 23 August, 2022)
 
 ## Metrics
 
