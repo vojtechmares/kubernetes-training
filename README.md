@@ -634,16 +634,23 @@ Static manifests, Helm charts, and *Kustomize* are stored in Git repository and 
 - [ArgoCD](https://argoproj.github.io/argo-cd/)
 - [Flux](https://fluxcd.io/)
 
-## Kubernetes networking
+## Networking
 
 Kubernetes by default runs two networks backed by CNI plugin and kube-proxy on each node.
 
+Locally on each node, networking is handled by [**iptables**](https://en.wikipedia.org/wiki/Iptables), altho there is an [ongoing effort](https://github.com/kubernetes/enhancements/blob/master/keps/sig-network/3866-nftables-proxy/README.md) to migrate to more modern and performant [**nftables**](https://nftables.org/).
+
+### Subnets
+
 It is useful to know your CIDRs, when debugging issues, so you can spot where the network traffic is heading and if it's a correct location.
 
-- Service network default CIDR: `10.43.0.0/16`
-- Pod network default CIDR: `10.42.0.0/16`
+Subnet CIDRs:
 
-CIDRs may vary depending on your Kubernetes distribution or cluster configuration.
+- *Service* subnet (default CIDR: `10.43.0.0/16`)
+- *Pod* subnet (default CIDR: `10.42.0.0/16`)
+
+> [!NOTE]
+> CIDRs may vary depending on your Kubernetes distribution or cluster configuration.
 
 ### Network Policy
 
@@ -653,11 +660,20 @@ Including in-cluster resources (other workload, DNS,...), ingress, and egress po
 
 For example highly sensitive workload may not be allowed to connect to anything outside of the cluster, to prevent leaking of sensitive information in case of an attack.
 
+### Cluster DNS addon
+
+- kube-dns
+- coredns (mostly default today)
+
 ### Cilium Network Policy
 
 If you are using [Cilium](https://cilium.io/) as your CNI plugin, you can use the *CiliumNetworkPolicy*, which allows for more fine-grained control over the network traffic. Thanks to introducing L7 (HTTP) policies.
 
 ### CNI plugins
+
+Kubernetes offers an API interface, that allows vendors to develop custom networking solutions, that will handle networking between *Pods* and *Services*.
+
+List of commonly used CNI plugins:
 
 - [Flannel](https://github.com/flannel-io/flannel)
 - [Calico](https://www.projectcalico.org/)
