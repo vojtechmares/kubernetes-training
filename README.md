@@ -644,6 +644,21 @@ Cluster namespaces:
 
 In short, cluster namespaces are non-application specific and tied to cluster itself.
 
+Create namespace:
+
+```shell
+kubectl create namespace <name>
+
+# or use ns instead of namespace for short
+kubectl create ns <name>
+```
+
+Delete namespace:
+
+```shell
+kubectl delete namespace <name>
+```
+
 ## Kubeconfig
 
 Kubeconfig is a configuration file on your workstation, which describes to *kubectl* how to talk to the cluster. It contains the kubeapi endpoint, cluster CA (since by default kubeapi is using self-signed certificate) and user credentials, either token or certificate.
