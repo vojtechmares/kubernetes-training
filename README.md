@@ -538,6 +538,10 @@ Storage class represents a storage backend, connected to Kubernetes with a *CSI 
 
 ### Reclaim policy
 
+- Retain - volume is kept even after requesting resource (such as *StatefulSet*) is deleted, preventing data loss. It's up to cluster administrator to delete the volume.
+- Delete - volume is automatically deleted
+- Recycle (`rm -rf /mnt/volume/*`). On Kubernetes 1.30 only available for `nfs` and `hostPath` volume types.
+
 ### Temporary storage
 
 Not persisted between *Pod* deletions, but persisted between *Pod* restarts.
