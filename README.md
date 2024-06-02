@@ -82,6 +82,10 @@ Machine running our workload (applications).
 
 ## Explain Kubernetes resources
 
+> Manpage for Kubernetes resources.
+
+When you need to know something about resource and it's field.
+
 ```shell
 kubectl explain node
 kubectl explain node.spec
