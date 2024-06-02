@@ -489,7 +489,13 @@ Is the program running? If not, restart the *Pod*.
 
 Is the program ready to accept traffic? If not, do not send traffic to the *Pod*.
 
-## Pod auto scaling
+### Best practices
+
+- liveness probe is not dependent on external dependencies (database, cache, downstream services,...)
+- different liveness and readiness probes
+- readiness probe should stop being ready as soon as possible after receiving `SIGTERM` signal, allowing service to gracefully shutdown
+
+## Pod autoscaling
 
 One of great Kubernetes strengths is Kubernetes capability of scaling workload up and down.
 
