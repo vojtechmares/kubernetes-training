@@ -100,11 +100,11 @@ kubectl get nodes
 kubectl get no
 ```
 
-## kubectl
+## `kubectl`
 
 A command line tool to interact with the cluster.
 
-### kubectl get
+### `kubectl get`
 
 List resources of type.
 
@@ -112,7 +112,7 @@ List resources of type.
 kubectl get namespace
 ```
 
-### kubectl describe
+### `kubectl describe`
 
 Describes resource including status, recent events and other information about it.
 
@@ -120,7 +120,7 @@ Describes resource including status, recent events and other information about i
 kubectl describe namespace default
 ```
 
-### kubectl create
+### `kubectl create`
 
 Creates new resource either in terminal or from file.
 
@@ -131,7 +131,7 @@ kubectl create namespace example-ns
 kubectl create -f ./example-ns.yaml
 ```
 
-### kubectl delete
+### `kubectl delete`
 
 ```shell
 kubectl delete namespace example-ns
@@ -140,7 +140,7 @@ kubectl delete namespace example-ns
 kubectl delete -f ./example-ns.yaml
 ```
 
-### kubectl apply
+### `kubectl apply`
 
 Creates a resource if it does not exist or applies the configuration from file to an existing resource.
 
