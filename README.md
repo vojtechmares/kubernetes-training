@@ -181,6 +181,8 @@ kubectl port-forward pod/$POD_NAME $LOCAL_PORT:$POD_PORT
 
 ### Open bash in pod
 
+`kubectl exec` runs a binary (or shell script if shell is available) within a *Pod*. It is also useful to launch a shell session inside the *Pod*, when you need to debug some issue.
+
 ```shell
 kubectl exec -it $POD_NAME -- bash
 ```
