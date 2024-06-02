@@ -414,6 +414,22 @@ This brings the Container Storage Interface API. Allowing cluster administrators
 
 The implementation is called a *Driver*, which is responsible for dynamically provisioning volumes, mounting them to nodes and setting up file system. Driver is typically
 
+CSI drivers for on-premise:
+
+- [Longhorn](https://longhorn.io/)
+- [Ceph](https://github.com/ceph/ceph-csi) (if you are running Ceph)
+- [NFS](https://github.com/kubernetes-csi/csi-driver-nfs)
+- [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver)
+
+CSI drivers for cloud:
+
+- [AWS EBS](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+- [AWS EFS](https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html) (NFS)
+- [GCE PD](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver) (Google Compute Engine Persistent Disk)
+- [List of Azure CSIs](https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers)
+- [DigitalOcean](https://github.com/digitalocean/csi-digitalocean)
+- [Hetzner Cloud](https://github.com/hetznercloud/csi-driver)
+
 ## Kubeconfig
 
 ### Context
