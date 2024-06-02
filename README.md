@@ -717,7 +717,7 @@ Cloud integrations like AWS CloudWatch, Azure Monitor, Google Cloud Operations S
 
 Operators are extensions to Kubernetes that make use of custom resources to manage applications and their components.
 
-For example, RedHat OpenShift (Kubernetes distribution by RedHat) is heavily utilizing operators.
+For example, [*RedHat OpenShift*](https://www.redhat.com/en/technologies/cloud-computing/openshift) (Kubernetes distribution by RedHat) is heavily utilizing operators.
 
 ### Kubebuilder
 
