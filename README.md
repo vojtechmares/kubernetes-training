@@ -1067,9 +1067,17 @@ Kubernetes project's solution to provisioning, operating, and upgrading multiple
 ## Links
 
 - [Kubernetes documentation](https://kubernetes.io/docs/home/)
+- [Helm Controller GitHub repository](https://github.com/k3s-io/helm-controller)
+- [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/)
 - [Gateway API](https://gateway-api.sigs.k8s.io/)
+- [KEDA (Kubernetes Event-Driven Autoscaler)](https://keda.sh/)
+- [Helm](https://helm.sh/)
 - [ArtifactHub (helm charts)](https://artifacthub.io/)
 - [OperatorHub](https://operatorhub.io/)
+- [RedHat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
+- [Cluster API](https://cluster-api.sigs.k8s.io/)
+- [Prometheus](https://prometheus.io/)
+- [Prometheus Operator](https://prometheus-operator.dev/)
 
 ## Questions?
 
