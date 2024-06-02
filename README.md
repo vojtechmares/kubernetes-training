@@ -167,6 +167,12 @@ kubectl get pods
 kubectl describe pod $POD_NAME
 ```
 
+### See pod logs
+
+```shell
+kubectl logs -f $POD_NAME
+```
+
 ### Connect to pod
 
 ```shell
@@ -187,12 +193,6 @@ kubectl cp ./path/to/file $POD_NAME:/remote/path
 
 # From pod to local
 kubectl cp $POD_NAME:/remote/path ./local/path
-```
-
-### See pod logs
-
-```shell
-kubectl logs -f $POD_NAME
 ```
 
 ## Service
