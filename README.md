@@ -594,6 +594,45 @@ CSI drivers for cloud:
 - [DigitalOcean](https://github.com/digitalocean/csi-digitalocean)
 - [Hetzner Cloud](https://github.com/hetznercloud/csi-driver)
 
+## Namespace
+
+Namespace is a way to separate resources from each other. By default this induces no boundaries between resources. But application (*Pod*) in one namespace can still connect to a *Service* in another namespace.
+
+The DNS name then looks like so: `<service name>.<namespace>[.svc.<cluster domain>]`. The `.svc` and `.[cluster domain]` are both optional. Default cluster domain is `cluster.local`. So the valid names are like so (for service `my-service` and namespace `my-namespace`):
+
+- `my-service.my-namespace`
+- `my-service.my-namespace.svc`
+- `my-service.my-namespace.svc.cluster.local`
+
+You can manage network access from *Pods* to another (*Pods*, *Namespaces*, *Services*, *Ingresses* and egress routing rules) with a *NetworkPolicy*.
+
+Only some resources are "namespaced" and some are cluster-wide.
+
+Namespaced resources:
+
+- *Pods*
+- *Services*
+- *Deployments*
+- *StatefulSets*
+- *Ingresses*
+- *ConfigMap* and *Secrets*
+- *ServiceAccount*
+- *Role* and *RoleBinding*
+- *ResourceQuota*
+- and more
+
+Cluster namespaces:
+
+- *PersistentVolume*
+- *StorageClass*
+- *IngressClass*
+- *PriorityClass*
+- *PriorityClass*
+- *RuntimeClass*
+- and more
+
+In short, cluster namespaces are non-application specific and tied to cluster itself.
+
 ## Kubeconfig
 
 ### Context
