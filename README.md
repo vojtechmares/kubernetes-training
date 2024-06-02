@@ -757,7 +757,7 @@ Kubernetes project's solution to provisioning, operating, and upgrading multiple
 
 ## Thank you, that's all 👋
 
-### Vojtěch Mareš
+## Vojtěch Mareš
 
 - Email me at [iam@vojtechmares.com](mailto:iam@vojtechmares.com)
 - Website: [vojtechmares.com](https://www.vojtechmares.com)
