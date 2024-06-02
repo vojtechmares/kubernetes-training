@@ -243,7 +243,6 @@ Deploying our application to *Pod* might be easy, but not a good idea. To deploy
 
 Today, ReplicaSet is usually not interacted with by users.
 
-
 ### Updates
 
 Kubernetes native:
