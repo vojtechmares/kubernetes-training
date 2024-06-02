@@ -809,9 +809,27 @@ A cluster autoscaler made by AWS, to achieve higher efficiency and reduce the ti
 
 ## Pod Disruption Budget
 
+*PodDisruptionBudget* puts another constraint on *Scheduler*, since it specifies minimum number of available *Pods* (or maximum unavailable).
+
 When we are running multiple *Pods* across multiple *Nodes*, we want to determine some minimum required amount of *Pods*, that make service still available without failing.
 
 For example, when we are scaling down the cluster and *Pods* are being reshuffled across nodes, not all *Pods* may be available. *Pod Disruption Budget* says how many *Pods* can be not ready, but our service is still functioning, perhaps with increased latency.
+
+```yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: my-pdb
+spec:
+  minAvailable: 2 # use absolute number or percentage
+  # or alternatively set maxUnavailable
+  #maxUnavailable: 33%
+  selector:
+    matchLabels:
+      app: my-app
+```
+
+The *PodDisruptionBudget* is using a selector (in the example above a label selector), to select to which *Pods* it applies to.
 
 ### Pod evictions
 
