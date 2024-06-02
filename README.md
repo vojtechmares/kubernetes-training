@@ -728,7 +728,54 @@ RBAC = Role Based Access Control
 kubectl auth can-i
 ```
 
-## Resource consumption
+## Resources
+
+### Configure resources
+
+You can configure **requests** and **limits**.
+
+Resource **requests** are used for when scheduling *Pods* and **limits** are enforced by *Kubelet* in form of CPU throttling or Out of Memory Kills (exit code 137).
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+spec:
+  containers:
+  - name: app
+    image: my-app-image
+    # Quality of Service class: Burstable
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "1Gi"
+```
+
+You can also expand on resource types, for example with [NVIDIA Device Plugin](https://github.com/NVIDIA/k8s-device-plugin), you can use `nvidia.com/gpu` resource type. You can define values smaller than one. In that case your application must be ready for ["GPU slicing"](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html).
+
+### Quality of Service
+
+Kubernetes has three Quality of Service classes:
+
+- Guaranteed: requests equals limits (both cpu and memory)
+- Burstable: requests are smaller than limits (at least cpu or memory or both)
+- Best Effort: no resources defined at all
+
+Quality of Service is used also when scheduling other *Pods* and mey trigger *Pod* eviction, see [Pod evictions](#pod-evictions) under [Pod Disruption Budget](#pod-disruption-budget).
+
+The Quality of Service priority goes as follows: Guaranteed > Burstable > Best Effort.
+
+If you want more fine gained control over *Pod* scheduling and it's priority, see [Priority Class](https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/) resource.
+
+> [!TIP]
+> Use the Guaranteed QoS class for stateful workloads or anything important, that you know needs to run.
+> For example asynchronous operations usually do not need QoS Guaranteed.
+
+### Resource consumption
 
 > [!NOTE]
 > Requires metrics server to be installed in the cluster.
