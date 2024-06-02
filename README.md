@@ -646,16 +646,53 @@ In short, cluster namespaces are non-application specific and tied to cluster it
 
 ## Kubeconfig
 
+Kubeconfig is a configuration file on your workstation, which describes to *kubectl* how to talk to the cluster. It contains the kubeapi endpoint, cluster CA (since by default kubeapi is using self-signed certificate) and user credentials, either token or certificate.
+
 ### Context
+
+Context represents a current cluster you are connected to, since Kubeconfig file can contain connection information to multiple clusters.
+
+For example, imagine you are a DevOps engineer and you have a cluster per environment: dev, stage, qa, prod. That will leave you with four clusters in your kubeconfig (if you choose to have configuration in a single file).
 
 ### Merge kubeconfig files
 
+```shell
+# Backup existing kubeconfig
+cp ~/.kube/config ~/.kube/config.bak
+
+# add new config and existing kubeconfig paths to $KUBECONFIG environment variable
+# note the colon character between the paths
+# RECOMMENDATION: use absolute paths
+export KUBECONFIG="~/.kube/config.bak:/path/to/new/kubeconfig"
+
+# merge and flatten kubeconfig, and save output to a file
+kubectl config view --flatten > /tmp/new-kubeconfig
+
+# replace your kubeconfig with new kubeconfig
+mv /tmp/new-kubeconfig ~/.kube/config
+
+# cleanup: unset $KUBECONFIG variable
+unset KUBECONFIG
+```
+
 ### kubectx
 
-Easily switch between clusters.
+Easily switch between contexts (clusters).
 
 ```shell
 kubectx demo
+```
+
+Rename context:
+
+```shell
+kubectx <new name>=<old name>
+```
+
+Delete context:
+
+```yaml
+kubectx -d <name>
 ```
 
 ### kubens
