@@ -331,8 +331,6 @@ StatefulSet also needs a "headless service", which is defined in it's spec.
 
 A service with `type=ClusterIP` and `clusterIP=None` configuration.
 
-Example:
-
 ```yaml
 apiVersion: v1
 kind: Service
@@ -364,8 +362,6 @@ And as for the case of client side load balancing. This eliminates the need of a
 *Deployment* and *StatefulSet* manage *Pods* that run indefinitely (not counting restarts or crashes).
 
 For one-time workload or just anything that does not need to run 24/7, *Job* is the right resource.
-
-Example:
 
 ```yaml
 apiVersion: batch/v1
