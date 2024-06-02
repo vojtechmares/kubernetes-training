@@ -503,7 +503,7 @@ One of great Kubernetes strengths is Kubernetes capability of scaling workload u
 
 Changing the number of *Pods* running to handle the incoming requests efficiently.
 
-### Vertical auto scaling
+### Vertical Pod Autoscaler
 
 Unlike *HPA*, *VerticalPodAutoscaler* does not come with Kubernetes by default, but it's a separate project [on GitHub](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler) that you need to install yourself.
 
@@ -512,7 +512,13 @@ Changing the requested amount resources on *Pods*.
 > [!NOTE]
 > This will invoke a *Pod* restart to apply the new configuration.
 
-## Cluster auto scaling
+### KEDA
+
+[KEDA (Kubernetes Event-Driven Autoscaler)](https://keda.sh/) is custom controller allowing for scaling *Pods* on different criteria/triggers than just plain Kubernetes.
+
+KEDA offers many "scalers", that allows to trigger a scale up or down of *Pods*. You can scale both *Deployments* or *Jobs*.
+
+## Cluster autoscaling
 
 Second available option, which goes hand-in-hand with automatically scaling *Pods*, to efficiently utilize the cluster. So we do not need to provision number of *Nodes* to cover maximum number of *Pods* during peak times.
 
