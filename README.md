@@ -530,7 +530,7 @@ The application can then read the file `/etc/secrets/database.ini`.
 - `ReadWriteOnce` (RWO)
 - `ReadWriteMany` (RWX)
 - `ReadOnlyMany` (ROX)
-- `ReadWriteOncePod` (RWOO)
+- `ReadWriteOncePod` (RWOP), Kubernetes 1.29+
 
 ### Storage classes
 
