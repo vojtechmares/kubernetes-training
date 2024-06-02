@@ -251,6 +251,37 @@ Kubernetes native:
 - Recreate (deletes all pods and creates new ones)
 - RollingUpdate (zero downtime)
 
+The *Recreate* strategy works pretty much as you expect: deletes all running *Pods* and then creates new ones.
+
+On the other hand, *Rolling Update* has a few configuration options, see example:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+```
+
 Extended:
 
 - Blue/Green
@@ -258,8 +289,6 @@ Extended:
 - A/B testing
 
 See: [Argo Rollouts](https://argoproj.github.io/rollouts/) or [Flagger](https://flagger.app/)
-
-### Rolling update
 
 ## Ingress
 
