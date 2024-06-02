@@ -920,7 +920,30 @@ All Kubernetes components are exposing metrics in Prometheus format.
 
 ### Prometheus
 
-### Prometheus operator and kube-prometheus-stack helm chart
+See: [Prometheus website](https://prometheus.io/).
+
+Prometheus is open-source and CNCF Graduated project (like Kubernetes), built originally at SoundCloud. It is designed to scrape monitor applications metrics. Also evaluate user-defined rules and alert when rules are broken.
+
+### Prometheus Operator
+
+See: [Prometheus Operator website](https://prometheus-operator.dev/).
+
+Prometheus Operator helps you managed Prometheus and it's monitoring targets on Kubernetes. Both *Pods* behind *Services* or *Pods* directly (stateful apps).
+
+Over time, Prometheus Operator (and it's CRDs) become widely supported by various projects and is de-factor open-source monitoring standard on Kubernetes today.
+
+### kube-prometheus-stack Helm Chart
+
+If you need something quickly and out-of-the-box, [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) is a great choice!
+
+The Helm Chart installs by default the following components:
+
+- Prometheus Operator CRDs
+- Prometheus Operator
+- Prometheus
+- Alertmanager
+- Grafana
+- Node exporter
 
 ## Logging
 
