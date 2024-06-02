@@ -410,13 +410,112 @@ spec:
 
 ## Configuration and secrets
 
+Contents of either *ConfigMap* or *Secret* are key-value pairs.
+
+Since it's YAML, you can use even multiline strings with `|`.
+
+Typically, keys are names of environment variables or file names.
+
 ### ConfigMap
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config-env
+data:
+  myKey: myValue
+  anotherKey: anotherValue
+```
+
+Or with values as a config file:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config-file
+data:
+  config.ini: |
+    [DEFAULT]
+    SomeKey = someValue
+```
 
 ### Secret
 
+If you want YAML secret in readable form, use `stringData`.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-apps-db
+type: Opaque
+stringData:
+  DATABASE_URL: mysql://wordpress:wppass@mysql.example.com:3306/wordpress
+```
+
+Otherwise, if you use `data` (default), values are **base64** encoded.
+
+> [!NOTE]
+> Secrets are not actually encrypted, but only **base64** encoded!
+> Therefore secrets are not actual secrets in security-sense, but the resource-level distinction allows RBAC for fine-gained access for applications and cluster administrator, application developers, and others.
+
 ### Load environment variables from ConfigMap or Secret
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+spec:
+  containers:
+  - name: app
+    image: my-app-image
+    envFrom:
+    - configMapRef:
+        name: my-config-env
+    - secretRef:
+        name: my-apps-db
+```
+
 ### Mount ConfigMap or Secret as volume
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-url-secret
+  namespace: my-app
+stringData:
+  database.ini: |
+    url = mysql://wordpress:wpapss@mysql.example.com:3306/wordpress
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+  namespace: my-app
+spec:
+  containers:
+  - name: app
+    image: my-app-image
+    volumeMounts:
+    - name: database-url-vol
+      mountPath: /etc/secrets
+      readOnly: true
+  volumes:
+  - name: database-url-vol
+    secret:
+      secretName: database-url-secret
+```
+
+The application can then read the file `/etc/secrets/database.ini`.
+
+> [!TIP]
+> It is recommended to mount secrets to containers as volume mounts rather than using environment variables,
+> since environment variables are sometimes included in error dumps (for example Sentry is doing that).
+> And that would lead to secret exposure.
 
 ## Persistent data storage
 
