@@ -235,9 +235,18 @@ kubectl port-forward service/example-svc 8080:8080
 kubectl delete service example-svc
 ```
 
-### Service `type=NodePort`
+### Exposing Service
 
-### Service `type=LoadBalancer`
+You can expose *Service* outside of the cluster in two ways, with `.spec.type`:
+
+- `type=NodePort`
+- `type=LoadBalancer`
+
+*NodePort* opens a port on every node and Kubernetes routes all incoming traffic (on every node) on given port to this *Service*. The default *NodePort* range is from 30 000 to 32 767.
+
+*LoadBalancer* requires cloud integration to provision a managed load balancer (AWS, Azure, GCP, DigitalOcean, Hetzner Cloud, and others) or software like [**kube-vip**](https://kube-vip.io/) to managed Virtual IP attachment/announcement, usually over ARP (L2) or BGP (L3).
+
+Another option to expose network interface outside the cluster of your workload is either to use an *Ingress* for HTTP, *Gateway* and given routes for other protocols like gRPC. Or in some cases you can expose *Pods* directly with `hostPort`.
 
 ## Deployment
 
