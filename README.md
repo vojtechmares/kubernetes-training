@@ -978,10 +978,62 @@ List of commonly used CNI plugins:
 > [!NOTE]
 > AWS VPC CNI is CNI plugin that allows your nodes to use AWS Elastic Network Interface on your EC2 instances for Kubernetes networking. Using this is recommended to utilized existing systems and not creating another networking layer on top of it.
 
-## Pod Security Admission
+## Security
+
+### Pod Security Standards
+
+Kubernetes 1.26+
+
+> The Pod Security Standards define three different policies to broadly cover the security spectrum. These policies are cumulative and range from highly-permissive to highly-restrictive. This guide outlines the requirements of each policy.
+
+Policies:
+
+- **Privileged**: Unrestricted policy, providing the widest possible level of permissions. This policy allows for known privilege escalations.
+- **Baseline**: Minimally restrictive policy which prevents known privilege escalations. Allows the default (minimally specified) Pod configuration.
+- **Restricted**: Heavily restricted policy, following current Pod hardening best practices.
+
+The *Privileged* policy is purposely-open, and entirely unrestricted. This type of policy is typically aimed at system- and infrastructure-level workloads managed by privileged, trusted users.
+
+The *Baseline* policy is aimed at ease of adoption for common containerized workloads while preventing known privilege escalations. This policy is targeted at application operators and developers of non-critical applications.
+
+The *Restricted* policy is aimed at enforcing current Pod hardening best practices, at the expense of some compatibility. It is targeted at operators and developers of security-critical applications, as well as lower-trust users.
+
+Policy Installation:
+
+- using built-in PodSecurity Admission Controller
+- third party, [Kyverno](https://kyverno.io/policies/pod-security/)
+- third party, [OPA Gatekeeper](https://github.com/open-policy-agent/gatekeeper)
+- third party, [Kubewarden](https://github.com/kubewarden)
+
+For correct setup, consult [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+
+### Pod Security Admission
+
+Kubernetes 1.25+
+
+> **Pod Security levels**
+>
+> Pod Security admission places requirements on a Pod's Security Context and other related fields according to the three levels defined by the Pod Security Standards: privileged, baseline, and restricted. Refer to the Pod Security Standards page for an in-depth look at those requirements.
+>
+> **Pod Security Admission labels for namespaces**
+>
+> Once the feature is enabled or the webhook is installed, you can configure namespaces to define the admission control mode you want to use for pod security in each namespace. Kubernetes defines a set of labels that you can set to define which of the predefined Pod Security Standard levels you want to use for a namespace. The label you select defines what action the control plane takes if a potential violation is detected:
+>
+> - enforce Policy violations will cause the pod to be rejected.
+> - audit Policy violations will trigger the addition of an audit annotation to the event recorded in the audit log, but are otherwise allowed.
+> - warn Policy violations will trigger a user-facing warning, but are otherwise allowed.
+>
+> ```yaml
+> # MODE must be one of `enforce`, `audit`, or `warn`.
+> # LEVEL must be one of `privileged`, `baseline`, or `restricted`.
+> pod-security.kubernetes.io/<MODE>: <LEVEL>
+> ```
+
+As mentioned in [Pod Security Standards](#pod-security-standards), you can use different engines/implementations to enforce/audit/warn upon. For example, [Kyverno](https://kyverno.io/).
 
 ### Pod Security Policy
 
+- Replaced with [Pod Security Standards](#pod-security-standards)
 - Removed in Kubernetes 1.25 (released: 23 August, 2022)
 
 ## Metrics
@@ -1074,6 +1126,7 @@ Kubernetes project's solution to provisioning, operating, and upgrading multiple
 - [Helm](https://helm.sh/)
 - [ArtifactHub (helm charts)](https://artifacthub.io/)
 - [OperatorHub](https://operatorhub.io/)
+- [Kyverno](https://kyverno.io/)
 - [RedHat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
 - [Cluster API](https://cluster-api.sigs.k8s.io/)
 - [Prometheus](https://prometheus.io/)
