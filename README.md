@@ -566,6 +566,10 @@ Volume with type `emptyDir`.
 - `local-storage` storage class
 - `hostPath`
 
+> [!WARNING]
+> Do not use `hostPath` volumes in production!
+> Since you are directly mounting a directory on host, it can lead to security issues or node errors.
+
 ### CSI plugins
 
 Kubernetes on it's own only implements APIs to support container storage, the implementation itself is left for vendors.
