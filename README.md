@@ -740,6 +740,12 @@ Operator to manage operators.
 
 Integrated with *RedHat OpenShift*, making it easy installing operators from OpenShift Admin Console.
 
+### Cluster API
+
+[Cluster API website](https://cluster-api.sigs.k8s.io/)
+
+Kubernetes project's solution to provisioning, operating, and upgrading multiple clusters.
+
 ## Links
 
 - [Kubernetes documentation](https://kubernetes.io/docs/home/)
