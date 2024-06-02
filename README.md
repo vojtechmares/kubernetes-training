@@ -536,6 +536,19 @@ The application can then read the file `/etc/secrets/database.ini`.
 
 Storage class represents a storage backend, connected to Kubernetes with a *CSI Driver*.
 
+At *StorageClass* you define if you allow for volume size expansion.
+
+*Volume binding mode* describes when a volume should be created when using dynamic provisioning. *Volume binding modes* are:
+
+- *Immediate* is the default, creates volume as soon as *PersistentVolumeClaim* resource is created, which can lead to provisioning issues like volume being created in wrong *Available Zone*
+- *WaitForFirstConsumer* solves issues of *Immediate* and delays volume provisioning until a *Pod* is created
+
+```shell
+$ kubectl get storageclass
+NAME                 PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+longhorn (default)   driver.longhorn.io   Delete          Immediate           true                   92d
+```
+
 ### Reclaim policy
 
 - Retain - volume is kept even after requesting resource (such as *StatefulSet*) is deleted, preventing data loss. It's up to cluster administrator to delete the volume.
