@@ -706,7 +706,7 @@ kubectx <new name>=<old name>
 
 Delete context:
 
-```yaml
+```shell
 kubectx -d <name>
 ```
 
