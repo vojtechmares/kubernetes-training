@@ -691,9 +691,20 @@ kubectl top nodes
 
 ## Startup, liveness, and readiness probes
 
+Probes help Kubernetes determine the state/health of a *Pod*.
+
+Kubernetes supports multiple types of probes:
+
+- Execute a binary/shell script
+- TCP connection
+- HTTP probe (status code based: 2xx vs 5xx, usually `200` and `503`)
+- [gRPC probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-a-grpc-liveness-probe), Kubernetes 1.27+
+
 ### Startup probe
 
 Wait for *Pod* to start, useful when application start takes time, for example Java applications or machine learning models.
+
+For example, Keycloak takes quite a while to start up and is a great use of startup probe, in order to to overload liveness probe.
 
 ### Liveness probe
 
