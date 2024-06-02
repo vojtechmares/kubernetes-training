@@ -553,17 +553,17 @@ For example, when we are scaling down the cluster and *Pods* are being reshuffle
 
 Helm is a package manager for Kubernetes.
 
-### Helm chart
+### Helm Chart
 
 A package of all manifest for an application. Containing everything, that you need to run the application. Chart can also determine a minimal Kubernetes version it supports, that is especially important when supporting multiple Kubernetes versions and you make breaking changes in the Chart.
 
-### Helm repository
+### Helm Repository
 
 Supports public and private repositories.
 
 Can be hosted on GitHub, GitLab, AWS S3, Google Cloud Storage, Azure Blob Storage, and more.
 
-### Helm install
+### `helm install`
 
 Installs Helm chart to the cluster, creating Helm "release".
 
@@ -588,15 +588,27 @@ helm install my-release oci://registry.example.com/some/chart
 helm uninstall my-release
 ```
 
-### Helm rollback
+### `helm rollback`
 
 ```shell
 helm rollback my-release 1
 ```
 
-### Helm controller
+> [!NOTE]
+> Rollback will actually create a new release (incrementing sequence number) instead of going back.
+> Values/configuration will be copied from the old release to the new one.
 
-Helm controller is an external addon not installed by Helm, you need to install it yourself.
+### `helm uninstall`
+
+```shell
+helm uninstall my-release
+```
+
+## Helm Controller
+
+See: [Helm Controller GitHub repository](https://github.com/k3s-io/helm-controller).
+
+Helm Controller is an external addon not installed by Helm, you need to install it yourself.
 
 Or on Kubernetes distributions like k3s or RKE2, Helm controller is available by default.
 
@@ -604,6 +616,9 @@ Installs Helm release from Kubernetes Custom Resource.
 
 - `HelmRelease`
 - `HelmReleaseConfig`
+
+> [!IMPORTANT]
+> `k3s-io/helm-controller` and `fluxcd/helm-controller` are two different projects, even though they carry the same name!
 
 ## Kustomize
 
