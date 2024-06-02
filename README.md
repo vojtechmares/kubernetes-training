@@ -332,6 +332,26 @@ StatefulSet also needs a "headless service", which is defined in it's spec.
 
 A service with `type=ClusterIP` and `clusterIP=None` configuration.
 
+Example:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-headless-service
+  labels:
+    app: my-app
+spec:
+  # type: ClusterIP # default
+  clusterIP: None
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+```
+
 That creates a service without a Virtual IP for load balancing and instead DNS will return all IPs of *Pods*.
 
 That is important for many reasons. This allows you to distinguish between running *Pods* (in another words preserving network identity of a process). Or to do client-side load balancing.
