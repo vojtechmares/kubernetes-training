@@ -361,7 +361,52 @@ And as for the case of client side load balancing. This eliminates the need of a
 
 ## Job
 
+*Deployment* and *StatefulSet* manage *Pods* that run indefinitely (not counting restarts or crashes).
+
+For one-time workload or just anything that does not need to run 24/7, *Job* is the right resource.
+
+Example:
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: my-job-container
+        image: my-job-image
+        command: ["bash", "-c", "echo Hello from the Kubernetes cluster"]
+      restartPolicy: Never
+  backoffLimit: 4
+```
+
 ### CronJob
+
+*CronJobs* allows for periodic scheduling of *Jobs* at given schedule ([cron expression](https://crontab.guru/)).
+
+*CronJob* embeds a `jobTemplate` in it's `spec`. Which is just a *Job* manifest without `metadata`. Therefore you can use it with a template engine like Helm, if you need to.
+
+```yaml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: my-cron-job
+spec:
+  schedule: "*/1 * * * *"
+  timeZone: Etc/UTC # Kubernetes 1.27+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: my-cron-job-container
+            image: my-cron-job-image
+            command: ["bash", "-c", "echo Hello from the Kubernetes cluster"]
+          restartPolicy: OnFailure
+```
 
 ## Configuration and secrets
 
