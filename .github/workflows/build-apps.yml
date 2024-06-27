@@ -43,7 +43,7 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       - name: build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: apps/hello-world
           platforms: linux/amd64,linux/arm64
@@ -85,7 +85,7 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
 
       - name: build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: apps/probes
           platforms: linux/amd64,linux/arm64
@@ -138,7 +138,7 @@ jobs:
             type=raw,value=green
 
       - name: build and push (blue)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: apps/blue-green
           platforms: linux/amd64,linux/arm64
@@ -149,7 +149,7 @@ jobs:
           labels: ${{ steps.green_meta.outputs.labels }}
 
       - name: build and push (green)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: apps/blue-green
           platforms: linux/amd64,linux/arm64
